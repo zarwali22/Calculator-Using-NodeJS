@@ -52,7 +52,8 @@ Before you begin, ensure you have the following:
     
 ### Usage
 To run the calculator web application, follow these steps:
-  **Start the Node.js Server:**
+
+**Start the Node.js Server:**
 
    ```bash
       npm start
