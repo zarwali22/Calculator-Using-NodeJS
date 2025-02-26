@@ -11,21 +11,27 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-    permissions:
-      contents: read #This is required for actions/checkout
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Java version
-        uses: actions/setup-java@v4
+   uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
+ - name: Build with Maven
+        run: mvn clean installruns-on: windows-latest
+permissions:
+  contents: read  # This is required for actions/checkout
 
-      - name: Build with Maven
-        run: mvn clean install
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+
+  - name: Set up JDK 11
+    uses: actions/setup-java@v2
+    with:
+      java-version: '11'  # You can specify the version of Java you want
+      distribution: 'adoptopenjdk'  # Or use 'zulu', 'temurin', or other distributions
+
+  # Add additional steps here as needed, for example, building or testing the project
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
